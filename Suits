@@ -1,0 +1,76 @@
+import random
+
+def pick_cards(n):
+    numbers=('A','2','3','4','5','6','7','8','9','10','J','Q','K')
+    suits=('♥','♦','♠','♣')
+    cards=set()
+    for i in range(n):
+         card=random.choice(numbers)
+         suit=random.choice(suits)
+         choice=card+suit
+         cards.add(choice)
+    return cards
+
+def print_cards(h):
+    for i in h:
+        print(i, end=' ')
+
+def tally(h):
+    dictionary={'♥':0, '♦':0, '♣':0, '♠':0}
+    for i in h:
+        dictionary[i[len(i)-1]]+=1
+    return dictionary
+    
+def sort_cards(h):
+    dictionary={}
+    for i in h:
+        if i[len(i)-1] in dictionary:
+            dictionary[i[len(i)-1]].append(i[0])
+        else:
+            dictionary[i[len(i)-1]]=[i[0]]
+    return dictionary
+
+def print_tally(t):
+    print('distribution by suit')
+    for k,v in t.items():
+        print(k,v)
+
+def print_sorted(s):
+    print('cards by suit')
+    hearts=''
+    diamonds=''
+    clubs=''
+    spades=''
+    for k,v in s.items():
+        for i in v:
+            if k=='♥':
+                hearts+=i+k
+        for i in v:
+            if k=='♦':
+                diamonds+=i+k
+        for i in v:
+            if k=='♠':
+                spades+=i+k
+        for i in v:
+            if k=='♣':
+                clubs+=i+k
+    print(hearts)
+    print(diamonds)
+    print(clubs)
+    print(spades)
+        
+def main():
+    num=int(input('how many cards? '))
+    print('your hand')
+    hand=pick_cards(num)
+    count=tally(hand)
+    sorted_cards=sort_cards(hand)
+    print_cards(hand)
+    print()
+    print()
+    print_tally(count)
+    print()
+    print_sorted(sorted_cards)
+
+main()
+    
