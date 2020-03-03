@@ -1,0 +1,36 @@
+movies = {('Hepburn', 'Audrey'):['Roman Holiday', 'Sabrina', 'Funny Face', 'Love in the Afternoon', 'Green Mansions', 'Breakfast at Tiffany’s', 'Charade', 'My Fair Lady'], ('Grant',
+'Cary'):['Bringing up Baby', 'Holiday', 'His Girl Friday', 'An Affair to Remember', 'The Philadelphia Story', 'Arsenic and Old Lace', 'North by Northwest', 'Charade'],('Tracy',
+'Spencer'):['Woman of the Year', 'Thirty Seconds Over Tokyo', 'State of the Union', 'Adam’s Rib', 'Father of the Bride', "Father’s Little Dividend", "Guess Who's Coming to Dinner", 'Desk Set'], ('Hepburn', 'Katherine'):['Holiday', 'Desk Set', 'The Philadelphia Story', 'Woman of the Year', "Adam's Rib", 'State of the Union', 'Bringing up Baby',
+"Guess Who's Coming to Dinner"]}
+
+def print_database():
+    for k,v in sorted(movies.items()):
+        print(k[0],k[1])
+        for i in sorted(v):
+            print('  '+i)
+        print()
+
+def print_common_movies(actor1, actor2):
+    movies1=movies[actor1]
+    movies2=movies[actor2]
+    for titles in movies1:
+        for titles2 in movies2:
+            if titles==titles2:
+                print(titles)
+
+def main():
+    choice=input('p(rint) database or q(uery) system: ')
+    if choice=='p':
+        print_database()
+    if choice=='q':
+        first_name=input('first name of actor1: ')
+        last_name=input('last name of actor1: ')
+        first_name2=input('first name of actor2: ')
+        last_name2=input('last name of actor2: ')
+        print('movies both starred in:')
+        first_actor=(last_name,first_name)
+        second_actor=(last_name2,first_name2)
+        print_common_movies(first_actor,second_actor)
+
+main()
+    
