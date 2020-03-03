@@ -1,0 +1,44 @@
+import random
+
+def fill_grid(g):
+    characters = '@#&%*'
+    for i in range(len(g)):
+        for j in range(len(g[i])):
+            g[i][j] = random.choice(characters)
+
+def print_grid(g):
+    for i in range(len(g)):
+        for j in range(len(g[i])):
+            print(g[i][j], end='')
+        print()
+
+def count(g,s):
+    count = 0
+    for i in range(len(g)):
+        for j in range(len(g[i])):
+            if g[i][j] == s:
+                count+=1
+    return count
+
+def replace(g,s1,s2):
+    for i in range(len(g)):
+        for j in range(len(g[i])):
+            if g[i][j] == s1:
+                g[i][j] = s2
+
+def main():
+    grid = [[0]*4 for i in range(5)]
+    fill_grid(grid)
+    print("here's the grid: ")
+    print()
+    print_grid(grid)
+    print()
+    s1 = input('symbol to count (@ # & % *): ')
+    print(s1, 'occurs', count(grid, s1), 'times')
+    print()
+    s2 = input('symbol to replace it with ($ ¢ £): ')
+    print()
+    replace(grid, s1, s2)
+    print_grid(grid)
+
+main()
